@@ -3,6 +3,7 @@ import Badge from '@material-ui/core/Badge';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import { logo } from '../assets/index';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -16,15 +17,19 @@ const Navbar = () => {
                             <SearchIcon className='text-[gray]/40' />
                         </div>
                     </div>
-                    <h1 className=' w-full cursor-pointer items-center text-3xl font-bold text-center grow'>
-                        <img className='w-[100px] sm:w-[150px] m-auto' src={logo} alt="logo" />
-                    </h1>
+                    <Link to='/'>
+                        <h1 className=' w-full cursor-pointer items-center text-3xl font-bold text-center grow'>
+
+                            <img className='w-[100px] sm:w-[150px] m-auto' src={logo} alt="logo" />
+                        </h1>
+                    </Link>
+
                     <div className=' sm:hidden'>
                         <MenuIcon />
                     </div>
                     <span className=' hidden sm:flex flex-row gap-x-4 sm:text-sm ml-[10px] mr-2 sm:justify-end justify-center items-center'>
-                        <div className='sm:text-sm text-[12px] w-[50px] text-center cursor-pointer '>SIGN IN</div>
-                        <div className='sm:text-sm text-[12px] w-[60px] text-center cursor-pointer'>REGISTER</div>
+                        <Link to='/login' className='sm:text-sm text-[12px] w-[50px] text-center cursor-pointer '>SIGN IN</Link>
+                        <Link to='/register' className='sm:text-sm text-[12px] w-[60px] text-center cursor-pointer'>REGISTER</Link>
 
                         <div className='text-sm cursor-pointer'>
                             <Badge badgeContent={4} color="secondary" className='cursor-pointer'>

@@ -14,7 +14,7 @@ const Home = () => {
             <Navbar />
             <Slider />
             <Categories />
-            <Products CAT={'POPULAR PRODUCTS'} />
+            <Products />
             <Newsletter />
             <Footer />
         </>

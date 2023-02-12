@@ -7,7 +7,8 @@ const { verifyToken, verifyTokenAndAuth, verifyTokenAndAdmin } = require('./veri
 router.post('/', verifyTokenAndAdmin, productController.create)
 router.put('/:id', verifyTokenAndAdmin, productController.update)
 router.delete('/:id', verifyTokenAndAdmin, productController.delete)
-router.get('/:id', verifyTokenAndAuth, productController.find)
+router.get('/:id', productController.find)
+router.get('/', productController.findAll)
 
 
 

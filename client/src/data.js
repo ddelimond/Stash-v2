@@ -29,16 +29,19 @@ export const categories = [
         id: 1,
         img: casual,
         title: "CASUAL APPAREL",
+        cat: "Casual"
     },
     {
         id: 2,
         img: lounge,
         title: " COMFORT WEAR",
+        cat: "Comfy"
     },
     {
         id: 3,
         img: designer,
         title: "DESIGNER BRANDS",
+        cat: "Designer"
     },
 ];
 

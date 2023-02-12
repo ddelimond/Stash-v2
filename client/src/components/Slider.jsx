@@ -14,7 +14,7 @@ const Slider = () => {
     }
 
     return (
-        <div className=" container hidden sm:flex w-screen overflow-hidden  max-w-full  relative">
+        <div className=" container hidden sm:flex w-screen overflow-hidden  max-w-full relative">
             <div className="flex justify-center absolute  opacity-80 left-[1rem] z-10 cursor-pointer bottom-[0%] top-0 m-auto items-center h-12 w-12 bg-slate-50 rounded-3xl">
                 <ArrowBackIosIcon onClick={() => handleClick('left')} />
             </div>

@@ -5,6 +5,7 @@ module.exports = {
     create: async (req, res) => {
         try {
             const newProd = await products.create(req.body)
+            console.log(newProd)
             res.status(200).json(newProd)
         } catch (err) {
             res.status(500).json(err)
@@ -36,11 +37,26 @@ module.exports = {
         }
     },
     findAll: async (req, res) => {
+        const qNew = req.query.new;
+        const qCategory = req.query.category;
         try {
-            const allProducts = await products.find()
-            res.status(200).json(allProducts)
+            let prods;
+
+            if (qNew) {
+                prods = await products.find().sort({ createdAt: -1 }).limit(1);
+            } else if (qCategory) {
+                prods = await products.find({
+                    categories: {
+                        $in: [qCategory],
+                    },
+                });
+            } else {
+                prods = await products.find();
+            }
+
+            res.status(200).json(prods);
         } catch (err) {
-            res.status(500).json(err)
+            res.status(500).json(err);
         }
     }
 }

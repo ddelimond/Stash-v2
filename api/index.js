@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.port || 3000
 
+app.use(cors())
+
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -22,7 +24,7 @@ mongoose.connect(process.env.connectionString)
 // crud routes
 app.use('/auth', require('./routes/auth.js'))
 app.use('/user', require('./routes/user.js'))
-app.use('/product', require('./routes/product.js'))
+app.use('/products', require('./routes/product.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/order', require('./routes/order.js'))
 app.use('/payment', require('./routes/stripe.js'))
