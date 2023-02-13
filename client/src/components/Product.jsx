@@ -2,6 +2,8 @@ import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
 import SearchIcon from '@material-ui/icons/Search';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Card from '@material-ui/core/Card';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -15,7 +17,9 @@ const Product = ({ item }) => {
                         <ShoppingCartOutlined className="" />
                     </div>
                     <div className="icon rounded-[50%] transition-all ease-in-out duration-500 hover:scale-110 hover:bg-[lightyellow]/50 bg-white/50 w-[40px] flex justify-center items-center h-[40px]">
-                        <SearchIcon />
+                        <Link to={`/single/product/${item._id}`}>
+                            <SearchIcon />
+                        </Link>
                     </div>
                     <div className="icon rounded-[50%] transition-all ease-in-out duration-500 hover:scale-110 hover:bg-[#FDB69F]/50 bg-white/50 w-[40px] flex justify-center items-center h-[40px]">
                         <FavoriteBorderIcon />

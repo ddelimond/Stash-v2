@@ -3,6 +3,17 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { slider1, slider2, slider3 } from '../assets/index'
 import { useState, useEffect } from 'react';
 import { sliderItems } from '../data';
+import styled from 'styled-components';
+
+const SliderContainer = styled.section`
+transition: all 1.5s ease;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
+`
+
+const Arrow = styled.div`
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};  
+`
 
 
 
@@ -14,11 +25,11 @@ const Slider = () => {
     }
 
     return (
-        <div className=" container hidden sm:flex w-screen overflow-hidden  max-w-full relative">
-            <div className="flex justify-center absolute  opacity-80 left-[1rem] z-10 cursor-pointer bottom-[0%] top-0 m-auto items-center h-12 w-12 bg-slate-50 rounded-3xl">
-                <ArrowBackIosIcon onClick={() => handleClick('left')} />
-            </div>
-            <div className={`wrapper transition-all ease duration-[1500ms] m-0    translate-x-[${slideIndex * -100}vw] flex h-full`}>
+        <div className=" container hidden sm:flex w-screen overflow-hidden  max-w-full  relative">
+            <Arrow direction="left" onClick={() => handleClick('left')} className="flex justify-center absolute  opacity-80 left-[1rem] z-10 cursor-pointer bottom-[0%] top-0 m-auto items-center h-12 w-12 bg-slate-50 rounded-3xl">
+                <ArrowBackIosIcon />
+            </Arrow>
+            <SliderContainer slideIndex={slideIndex} className={` m-0 flex h-full`}>
                 {sliderItems.map((slide) => {
                     return (
                         <div key={slide.id} className={`slide flex w-screen ${slide.bg}  items-center  h-[60vh]`}>
@@ -34,10 +45,10 @@ const Slider = () => {
                     )
                 })
                 }
-            </div>
-            <div className="flex justify-center absolute  opacity-80 cursor-pointer z-10 bottom-0 top-0 right-[1rem] m-auto items-center h-12 w-12 bg-slate-50 rounded-3xl">
-                <ArrowForwardIosIcon onClick={() => handleClick('right')} />
-            </div>
+            </SliderContainer>
+            <Arrow direction="right" onClick={() => handleClick('right')} className="flex justify-center absolute  opacity-80 cursor-pointer z-10 bottom-0 top-0 right-[1rem] m-auto items-center h-12 w-12 bg-slate-50 rounded-3xl">
+                <ArrowForwardIosIcon />
+            </Arrow>
         </div >
     )
 }

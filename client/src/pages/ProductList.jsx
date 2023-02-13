@@ -5,48 +5,68 @@ import Newsletter from '../components/Newsletter'
 import Announcement from '../components/Announcement'
 import { useLocation } from 'react-router-dom'
 import React, { useState } from 'react'
+import styled from 'styled-components'
+import { mobile } from '../responsive'
+
+
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+
+const Filter = styled.div`
+  margin: 20px;
+  ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+`;
 
 
 
 const ProductList = ({ CAT }) => {
     const location = useLocation()
-    console.log(location)
     const cat = location.pathname.split('/')[2]
-    console.log(cat)
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("Newest")
     const handleFilters = (e) => {
         const value = e.target.value;
         setFilters({
-            ...filter, [e.target.name]: value
+            ...filters, [e.target.name]: value
         })
     }
     return (
         <>
             <Announcement />
             <Navbar />
-            <div className='contianer flex flex-wrap justify-between items-center sm:w-screen h-[20vh]'>
-                <div className='filter flex flex-col sm:flex-row'>
+            <FilterContainer>
+                <Filter className=''>
                     <span className='filterText text-[20px] font-normal ml-5 sm:ml-10 m-auto'>
                         Filter Products:
                     </span>
                     <select name="Color" onChange={handleFilters} id="Filter" className=' ml-5 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Colors" disabled >Colors</option>
-                        <option value="White">White</option>
-                        <option value="Black">Black</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Yellow">Yellow</option>
-                        <option value="Red">Red</option>
-                        <option value="Green">Green</option>
+                        <option value="white">white</option>
+                        <option value="=black">black</option>
+                        <option value="blue">blue</option>
+                        <option value="yellow">yellow</option>
+                        <option value="red">red</option>
+                        <option value="pink">pink</option>
+                        <option value="green">green</option>
+                        <option value="brown">brown</option>
+                        <option value="navy">navy</option>
+                        <option value="gray">gray</option>
                     </select>
 
-                    <select name="Size" onChange={handleFilters} id="Sort" className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
+                    <select name="Size" onChange={handleFilters} className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Size" disabled >Size</option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
                         <option value="M">M</option>
                         <option value="L">L</option>
                         <option value="XL">XL</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
@@ -60,18 +80,18 @@ const ProductList = ({ CAT }) => {
                         <option value="33">33</option>
                         <option value="34">34</option>
                     </select>
-                </div>
-                <div className='filter flex flex-col items-center sm:flex-row h-[99px] sm:h-[50px]'>
+                </Filter>
+                <Filter className=''>
                     <span className='filterText text-[20px] font-normal ml-0 sm:ml-10'>
                         Sort Products:
                     </span>
-                    <select name="Sort" onChange={(e) => setSort({ [e.target.name]: e.target.value })} id="Sort" className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
+                    <select name="Sort" onChange={(e) => { setSort({ [e.target.name]: e.target.value }); console.log(sort) }} className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Newest">Newest</option>
                         <option value="(asc)">Price (asc)</option>
                         <option value="(desc)">Price (desc)</option>
                     </select>
-                </div>
-            </div>
+                </Filter>
+            </FilterContainer>
             <h1 className='title text-5xl font-bold text-center'>{CAT}</h1>
             <Products cat={cat} filters={filters} sort={sort} />
             <Newsletter />

@@ -1,5 +1,4 @@
 import Product from './Product'
-import { popularProducts } from '../data'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -9,16 +8,12 @@ const Products = ({ cat, filters, sort }) => {
     const [filteredProducts, setFilteredProducts] = useState([])
     const CAT = cat?.split('')?.map((letter, index) => index === 0 ? letter.toUpperCase() : letter).join('')
 
-    console.log(CAT)
-
-
-
     useEffect(() => {
 
         const getProducts = async () => {
             try {
                 const res = await axios.get(CAT ? `http://localhost:3000/products?category=${CAT}` : 'http://localhost:3000/products')
-                console.log(res.data)
+
                 setProducts(res.data)
 
             } catch (err) {
@@ -34,26 +29,42 @@ const Products = ({ cat, filters, sort }) => {
 
     useEffect(() => {
 
-        cat &&
-
-            setFilteredProducts(
-                products.filter(item =>
-                    Object.entries(filters).every(([key, value]) =>
-                        item[key].includes(value)
-                    )
+        cat && setFilteredProducts(
+            products?.filter(item =>
+                Object.entries(filters)?.every(([key, value]) =>
+                    item[key].includes(value)
                 )
-            );
+            )
+        );
 
     }, [products, cat, filters]);
 
+    useEffect(() => {
+        if (sort === "Newest") {
+            setFilteredProducts((products) =>
+                [...products].sort((a, b) => a.createdAt - b.createdAt)
+            );
+        } else if (sort === "(asc)") {
+            setFilteredProducts((products) =>
+                [...products].sort((a, b) => a.price - b.price)
+            );
+        } else {
+            setFilteredProducts((products) =>
+                [...products].sort((a, b) => b.price - a.price)
+            );
+        }
+    }, [sort]);
+
+
     return (
         <div className='container flex just items-center max-w-[100vw]  flex-col p-5'>
-            <h1 className='font-bold text-4xl m-auto text-center'>{cat}</h1>
+            <h1 className='font-bold text-4xl m-x-auto m-y-[20px] text-center'>{cat || 'Products'}</h1>
             <div className='flex flex-row justify-center items-center flex-wrap'>
-                {cat ? filteredProducts.map((item) =>
-                    <Product key={item.id} item={item}></Product>
-                ) : halfProd.map(item => <Product key={item.id} item={item}></Product>)
-                }
+                {cat
+                    ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+                    : products
+                        .slice(0, 12)
+                        .map((item) => <Product item={item} key={item._id} />)}
             </div>
         </div>
     )
