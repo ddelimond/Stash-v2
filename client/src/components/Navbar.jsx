@@ -4,8 +4,15 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import { logo } from '../assets/index';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+
+
 
 const Navbar = () => {
+    const quantity = useSelector(state => state.cart.quantity)
+
+    console.log(quantity)
     return (
         <>
             <div className=" h-15">
@@ -32,8 +39,11 @@ const Navbar = () => {
                         <Link to='/register' className='sm:text-sm text-[12px] w-[60px] text-center cursor-pointer'>REGISTER</Link>
 
                         <div className='text-sm cursor-pointer'>
-                            <Badge badgeContent={4} color="secondary" className='cursor-pointer'>
-                                <ShoppingCartOutlinedIcon />
+                            <Badge badgeContent={quantity} color="secondary" className='cursor-pointer'>
+                                <Link to="/cart">
+                                    <ShoppingCartOutlinedIcon />
+                                </Link>
+
                             </Badge>
                         </div>
                     </span>

@@ -11,6 +11,7 @@ import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -115,6 +116,10 @@ const Button = styled.button`
   
 `;
 
+window.addEventListener('DOMContentLoaded', () => {
+
+})
+
 const Product = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[3];
@@ -131,14 +136,25 @@ const Product = () => {
                 setProduct(res.data);
             } catch { }
         };
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
+        }
         getProduct();
+        scrollToTop()
     }, [id]);
 
-    const handleQuantity = (type) => {
+
+
+    const handleQuantity = async (type) => {
         if (type === "dec") {
             quantity > 1 && setQuantity(quantity - 1);
         } else {
             setQuantity(quantity + 1);
+
         }
     };
 
@@ -147,6 +163,8 @@ const Product = () => {
             addProduct({ ...product, quantity, color, size })
         );
     };
+
+
     return (
         <Container>
             <Wrapper>

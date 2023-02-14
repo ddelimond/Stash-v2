@@ -4,7 +4,7 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Announcement from '../components/Announcement'
 import { useLocation } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive'
 
@@ -33,6 +33,17 @@ const ProductList = ({ CAT }) => {
             ...filters, [e.target.name]: value
         })
     }
+
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
+        }
+        scrollToTop()
+    }, [cat])
     return (
         <>
             <Announcement />
