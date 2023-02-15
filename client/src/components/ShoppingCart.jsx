@@ -1,11 +1,26 @@
 import { Add, Remove } from "@material-ui/icons"
 import { useState } from "react"
 import { bag } from '../assets'
+import { useSelector } from "react-redux"
+import styled from "styled-components"
+
+
+const Color = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  margin: 0px 5px;
+  cursor: pointer;
+`;
 
 
 const ShoppingCart = () => {
 
     const [amount, setAmount] = useState(1)
+
+    const cart = useSelector(state => state.cart)
+    console.log(cart)
 
     return (
         <div className="container w-screen h-[100%] xl:h-screen max-w-[100vw]">
@@ -21,48 +36,29 @@ const ShoppingCart = () => {
                 </div>
                 <div className="bottom flex flex-col xl:flex-row justify-between">
                     <div className="info grow-[3] ">
-                        <div className="product flex flex-col lg:flex-row justify-between my-[10px]  ">
-                            <div className="productDetails grow-[2] flex">
-                                <img className="w-[200px]" src="https://cdn-images.farfetch-contents.com/18/47/55/81/18475581_40501654_300.jpg" alt="" />
-                                <div className="details p-[20px] flex flex-col justify-around">
-                                    <span className="prodname"><b>Product:</b>DOLCE & GABANA logo-jacquard ruched tulle dress</span>
-                                    <span><b>ID:</b> 16758965789</span>
-                                    <div className={`prodColor w-[20px] h-[20px] rounded-full bg-orange-500`} props={'orange'}></div>
-                                    <span><b>SIZE:</b> S, M, L, XL</span>
+                        {cart.products.map(product => (
+                            <div className="product flex flex-col lg:flex-row justify-between my-[10px]  ">
+                                <div className="productDetails grow-[2] flex">
+                                    <img className="w-[200px]" src={product.img} alt="product image" />
+                                    <div className="details p-[20px] flex flex-col justify-around">
+                                        <span className="prodname"><b>Product:</b>{product.title}</span>
+                                        <span><b>ID:</b>{product._id}</span>
+                                        <Color color={product.color}></Color>
+                                        <span><b>SIZE:</b> {product.size}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="priceDetails grow-[1] flex items-center font-bold flex-col">
-                                <div className="prodAmountCont flex flex-row items-center mb-[20px]">
-                                    <Add className="cursor-pointer" />
-                                    <div className="prodAmount text-[24px] mx-[15px] my-[5px]">1</div>
-                                    <Remove className="cursor-pointer" />
+                                <div className="priceDetails grow-[1] flex items-center font-bold flex-col">
+                                    <div className="prodAmountCont flex flex-row items-center mb-[20px]">
+                                        <Add className="cursor-pointer" />
+                                        <div className="prodAmount text-[24px] mx-[15px] my-[5px]">{product.quantity}</div>
+                                        <Remove className="cursor-pointer" />
+                                    </div>
+                                    <div className="prodPrice font-thin text-[30px]  ">$ {product.price}</div>
                                 </div>
-                                <div className="prodPrice font-thin text-[30px]  ">$ 800</div>
-                            </div>
 
-                        </div>
-                        <div className="hr border-none h-[1px] bg-[#eeee]"></div>
-
-                        <div className="product flex flex-col lg:flex-row justify-between my-[10px]  ">
-                            <div className="productDetails grow-[2] flex">
-                                <img className="w-[200px]" src={bag} alt="" />
-                                <div className="details p-[20px] flex flex-col justify-around">
-                                    <span className="prodname"><b>Product:</b>MICHAEL MICHAEL KORS Valerie Small Logo Satchel</span>
-                                    <span><b>ID:</b> 16345367357</span>
-                                    <div className={`prodColor w-[20px] h-[20px] rounded-full bg-brown`} props={'brown'}></div>
-                                    <span><b>SIZE:</b> MEDIUM</span>
-                                </div>
+                                <div className="hr border-none h-[1px] bg-[#eeee]"></div>
                             </div>
-                            <div className="priceDetails grow-[1] flex items-center  flex-col">
-                                <div className="prodAmountCont flex flex-row items-center font-bold mb-[20px]">
-                                    <Add className="cursor-pointer" />
-                                    <div className="prodAmount text-[24px] mx-[15px] my-[5px]">1</div>
-                                    <Remove className="cursor-pointer" />
-                                </div>
-                                <div className="prodPrice font-thin text-[30px]  ">$ 129</div>
-                            </div>
-
-                        </div>
+                        ))}
                     </div>
                     <div className="summary grow-[1] border-solid border-[.5px] border-lightgray  p-[20px] xl:h-[50vh]">
                         <h1 className="summaryTitle font-extralight text-2xl ">
@@ -73,7 +69,7 @@ const ShoppingCart = () => {
                                 Subtotal
                             </span>
                             <span className="summaryItemPrice">
-                                $ 80
+                                ${cart.total}
                             </span>
                         </div>
 
@@ -100,7 +96,7 @@ const ShoppingCart = () => {
                                 Total
                             </div>
                             <div className="summaryItemPrice">
-                                $ 80
+                                $ {cart.total + 10.60}
                             </div>
                         </div>
                         <button className="w-full p-[10px] bg-black text-white  hover:bg-black/80 transition-all ease-in duration-300">CHECKOUT NOW</button>
