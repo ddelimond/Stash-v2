@@ -6,6 +6,7 @@ import userReducer from "./userRedux";
 export const store = configureStore({
     reducer: {
         cart: cartReducer,
+        user: userReducer
     }
 })
 

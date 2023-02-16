@@ -11,6 +11,7 @@ import { ReactDOM } from 'react-dom/client'
 import { BrowserRouter as Router, RouterProvider, Route, Routes, Navigate } from 'react-router-dom'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import Success from './pages/Success'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/products/:category' element={<ProductList />} />
           <Route exact path='/single/product/:id' element={<Product />} />
           <Route exact path='/cart' element={<Cart />} />
+          <Route exact path='/success' element={<Success />} />
         </Routes>
       </Router>
     </Provider>

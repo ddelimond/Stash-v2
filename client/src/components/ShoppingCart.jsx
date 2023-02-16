@@ -1,8 +1,13 @@
 import { Add, Remove } from "@material-ui/icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { bag } from '../assets'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
+import StripeCheckout from 'react-stripe-checkout'
+import { logo } from "../assets"
+import { userRequest } from "../requestMethods"
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 
 const Color = styled.div`
@@ -20,16 +25,48 @@ const ShoppingCart = () => {
     const [amount, setAmount] = useState(1)
 
     const cart = useSelector(state => state.cart)
-    console.log(cart)
+    const [stripeToken, setStripeToken] = useState(null)
+    const history = useNavigate()
+
+
+    const onToken = (token) => {
+        setStripeToken(token)
+    }
+    let location = useLocation();
+
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                const res = await userRequest.post('/checkout/payment', {
+                    tokenId: stripeToken.id,
+                    amount: cart.total * 100
+                })
+
+                history('/success', { state: { stripeData: res.data, products: cart } })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        stripeToken && makeRequest()
+    }, [stripeToken, cart.total, history])
+
+    const key = import.meta.env.VITE_STRIPE_KEY
+
+
+
+
+    // const dispatch = useDispatch()
+
+    // dispatch()
 
     return (
-        <div className="container w-screen h-[100%] xl:h-screen max-w-[100vw]">
+        <div className="container w-screen h-full max-w-[100vw]">
             <div className="wrapper p-[10px] sm:p-[20px]">
                 <h1 className="title  text-4xl font-light text-center">YOUR BAG</h1>
                 <div className="top flex items-center justify-between p-[20px]">
                     <button className=" topButton p-[10px] cursor-pointer font-bold h-[60px] bg-white border-2 border-black border-solid  hover:bg-gray-50 transition-all ease-in duration-300">CONTINUE SHOPPING</button>
                     <div className="topTexts hidden sm:block">
-                        <span className="topText underline cursor-pointer mx-[10px]">Shopping Bag(4)</span>
+                        <span className="topText underline cursor-pointer mx-[10px]">Shopping Bag({cart.quantity})</span>
                         <span className="topText underline cursor-pointer mx-[10px]">Your Wishlist(0)</span>
                     </div>
                     <button className={`topButton p-[10px] cursor-pointer font-bold h-[60px] bg-black text-white  hover:bg-black/80 transition-all ease-in duration-300`} type="filled">CHECKOUT NOW</button>
@@ -84,10 +121,10 @@ const ShoppingCart = () => {
 
                         <div className="summaryItem my-[30px] flex justify-between">
                             <div className="summaryText">
-                                Discount
+                                Shipping Discount
                             </div>
                             <div className="summaryItemPrice">
-                                $ -16.00
+                                $ -10.60
                             </div>
                         </div>
 
@@ -96,10 +133,28 @@ const ShoppingCart = () => {
                                 Total
                             </div>
                             <div className="summaryItemPrice">
-                                $ {cart.total + 10.60}
+                                $ {cart.total}
                             </div>
                         </div>
-                        <button className="w-full p-[10px] bg-black text-white  hover:bg-black/80 transition-all ease-in duration-300">CHECKOUT NOW</button>
+
+                        <StripeCheckout
+                            name="STASH"
+                            image={logo}
+                            shippingAddress
+                            billingAddress
+                            description={`Your totoal is $${cart.total}`}
+                            amount={cart.price * 100}
+                            alipay // accept Alipay (default false)
+                            bitcoin // accept Bitcoins (default false)
+                            allowRememberMe // "Remember Me" option (default true)
+                            currency="USD"
+                            token={onToken}
+                            stripeKey={key}>
+
+
+                            <button className="w-full p-[10px] bg-black text-white  hover:bg-black/80 transition-all ease-in duration-300">CHECKOUT NOW</button>
+
+                        </StripeCheckout>
                     </div>
                 </div>
             </div>
