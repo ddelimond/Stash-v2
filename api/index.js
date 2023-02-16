@@ -27,7 +27,7 @@ app.use('/user', require('./routes/user.js'))
 app.use('/products', require('./routes/product.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/order', require('./routes/order.js'))
-app.use('/payment', require('./routes/stripe.js'))
+app.use('/checkout', require('./routes/stripe.js'))
 
 
 app.listen(port, () => {

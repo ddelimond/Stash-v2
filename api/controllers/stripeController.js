@@ -1,7 +1,4 @@
-const stripe = require("stripe")
-
-
-
+const stripe = require('stripe')(process.env.stripeKey)
 
 module.exports = {
     pay: (req, res) => {
