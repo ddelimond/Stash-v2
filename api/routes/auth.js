@@ -6,7 +6,7 @@ const authController = require('../controllers/authController.js')
 
 
 router.post('/register', authController.register)
-router.get('/login', authController.login)
+router.post('/login', authController.login)
 
 
 
