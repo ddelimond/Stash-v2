@@ -20,6 +20,7 @@ import single3 from './product3.webp'
 import single4 from './product4.jpeg'
 import single5 from './product5.jpeg'
 import bag from './bag.png'
+import confetti from './confetti.gif'
 
 
-export { logo, slider1, slider2, slider3, designer, casual, lounge, product1, product2, product3, product4, product5, product6, product7, product8, payments, single1, single2, single3, single4, single5, bag }
+export { logo, slider1, slider2, slider3, designer, confetti, casual, lounge, product1, product2, product3, product4, product5, product6, product7, product8, payments, single1, single2, single3, single4, single5, bag }

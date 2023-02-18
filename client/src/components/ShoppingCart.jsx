@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 
 
+
 const Color = styled.div`
   width: 20px;
   height: 20px;
@@ -42,7 +43,13 @@ const ShoppingCart = () => {
                     amount: cart.total * 100
                 })
 
+
                 history('/success', { state: { stripeData: res.data, products: cart } })
+                cart.quantity = 0;
+                cart.products = [];
+                cart.total = 0;
+                console.log(cart)
+
             } catch (error) {
                 console.log(error)
             }
@@ -86,7 +93,7 @@ const ShoppingCart = () => {
                                 </div>
                                 <div className="priceDetails grow-[1] flex items-center font-bold flex-col">
                                     <div className="prodAmountCont flex flex-row items-center mb-[20px]">
-                                        <Add className="cursor-pointer" />
+                                        <Add onClick={console.log("hello")} className="cursor-pointer" />
                                         <div className="prodAmount text-[24px] mx-[15px] my-[5px]">{product.quantity}</div>
                                         <Remove className="cursor-pointer" />
                                     </div>

@@ -26,9 +26,9 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  height: 100%;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: "40%" })}
 `;
 
 const InfoContainer = styled.div`
@@ -121,91 +121,92 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 const Product = () => {
-    const location = useLocation();
-    const id = location.pathname.split("/")[3];
-    const [product, setProduct] = useState({});
-    const [quantity, setQuantity] = useState(1);
-    const [color, setColor] = useState("");
-    const [size, setSize] = useState("");
-    const dispatch = useDispatch();
+  const location = useLocation();
+  const id = location.pathname.split("/")[3];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const res = await publicRequest.get("/products/" + id);
-                setProduct(res.data);
-            } catch { }
-        };
-        const scrollToTop = () => {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            })
-        }
-        getProduct();
-        scrollToTop()
-    }, [id]);
-
-
-
-    const handleQuantity = async (type) => {
-        if (type === "dec") {
-            quantity > 1 && setQuantity(quantity - 1);
-        } else {
-            setQuantity(quantity + 1);
-
-        }
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/" + id);
+        setProduct(res.data);
+      } catch { }
     };
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
+    }
+    getProduct();
+    scrollToTop()
+  }, [id]);
 
-    const handleClick = () => {
-        dispatch(
-            addProduct({ ...product, quantity, color, size })
-        );
-    };
 
 
-    return (
-        <Container>
-            <Wrapper>
-                <ImgContainer>
-                    <Image src={product.img} />
-                </ImgContainer>
-                <InfoContainer>
-                    <Title>{product.title}</Title>
-                    <Desc>{product.desc}</Desc>
-                    <Price>$ {product.price}</Price>
-                    <FilterContainer>
-                        <Filter>
-                            <FilterTitle>Color</FilterTitle>
-                            {product.color?.map((c) => (
-                                <FilterColor className={`${c === 'white' ? 'border-2 border-black/10 border-solid' : ''} transform-all ease-in duration-300 hover:scale-125`} color={c} key={c} onClick={() => setColor(c)} />
-                            ))}
-                        </Filter>
-                        <Filter>
-                            <FilterTitle>Size</FilterTitle>
-                            <FilterSize onChange={(e) => setSize(e.target.value)}>
-                                {product.size?.map((s) => (
-                                    <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                                ))}
-                            </FilterSize>
-                        </Filter>
-                    </FilterContainer>
-                    <AddContainer>
-                        <AmountContainer>
-                            <Remove onClick={() => handleQuantity("dec")} />
-                            <Amount>{quantity}</Amount>
-                            <Add onClick={() => handleQuantity("inc")} />
-                        </AmountContainer>
-                        <Button className="rounded-[5px] transition-all border-teal-500 border-solid border-2 hover:bg-teal-500 hover:text-white ease-in duration-300" onClick={handleClick}>ADD TO CART</Button>
-                    </AddContainer>
-                </InfoContainer>
-            </Wrapper>
-        </Container>
+  const handleQuantity = async (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+
+    }
+  };
+
+  const handleClick = () => {
+    dispatch(
+      addProduct({ ...product, quantity, color, size })
     );
+  };
+
+
+  return (
+    <Container>
+      <Wrapper>
+        <ImgContainer>
+          <Image src={product.img} />
+        </ImgContainer>
+        <InfoContainer>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price>$ {product.price}</Price>
+          <FilterContainer>
+            <Filter>
+              <FilterTitle>Color</FilterTitle>
+              {product.color?.map((c) => (
+                <FilterColor className={`${c === 'white' ? 'border-2 border-black/10 border-solid' : ''} transform-all ease-in duration-300 hover:scale-125`} color={c} key={c} onClick={() => setColor(c)} />
+              ))}
+            </Filter>
+            <Filter>
+              <FilterTitle>Size</FilterTitle>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product.size?.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
+              </FilterSize>
+            </Filter>
+          </FilterContainer>
+          <AddContainer>
+            <AmountContainer>
+              <Remove className="cursor-pointer" onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add className="cursor-pointer" onClick={() => handleQuantity("inc")} />
+            </AmountContainer>
+            <Button className="rounded-[5px] transition-all border-teal-500 border-solid border-2 hover:bg-teal-500 hover:text-white ease-in duration-300" onClick={handleClick}>ADD TO CART</Button>
+          </AddContainer>
+        </InfoContainer>
+      </Wrapper>
+    </Container>
+  );
 };
 
 export default Product;
+
 
 
 

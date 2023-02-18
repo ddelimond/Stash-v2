@@ -1,12 +1,20 @@
 import Product from './Product'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 const Products = ({ cat, filters, sort }) => {
 
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
     const CAT = cat?.split('')?.map((letter, index) => index === 0 ? letter.toUpperCase() : letter).join('')
+    const url = window.location
+    const prodOptions = cat ? filteredProducts.map((item) => <Product item={item} key={item.id} />) :
+        url.pathname === '/' ? products.slice(0, 12).map((item) => <Product item={item} key={item._id} />) :
+            products.map((item) => <Product item={item} key={item._id} />);
+
+
+
 
     useEffect(() => {
 
@@ -23,7 +31,7 @@ const Products = ({ cat, filters, sort }) => {
         getProducts()
     }, [cat])
 
-    const halfProd = products.filter((item, index) => index > products.length / 2)
+
 
 
 
@@ -60,11 +68,7 @@ const Products = ({ cat, filters, sort }) => {
         <div className='container flex just items-center max-w-[100vw]  flex-col p-5'>
             <h1 className='font-bold text-4xl m-x-auto m-y-[20px] text-center'>{cat || 'Products'}</h1>
             <div className='flex flex-row justify-center items-center flex-wrap'>
-                {cat
-                    ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
-                    : products
-                        .slice(0, 12)
-                        .map((item) => <Product item={item} key={item._id} />)}
+                {prodOptions}
             </div>
         </div>
     )

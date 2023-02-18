@@ -1,18 +1,21 @@
 import { useState } from "react"
 import { login } from '../redux/apiCalls'
 import { mobile } from '../responsive'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const LoginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
+    const { isFetching, isSuccess, error } = useSelector((state) => state.user)
+    console.log(error)
     const handleClick = (e) => {
         e.preventDefault();
         login(dispatch, { username, password })
 
     }
-
+    const buttonDis = document?.getElementsByClassName('login')[0]?.disabled
+    console.log(buttonDis)
     return (
         <>
             <div className='container w-screen h-screen relative flex flex-col justify-center items-center opacity-60  max-w-[100vw]'>
@@ -24,7 +27,8 @@ const LoginForm = () => {
                         <input onChange={(e) => setPassword(e.target.value)} className='w-[300px] h-[50px]  border-2 border-solid border-gray-200 p-[10px] rounded-[5px] bg-[#FAF9F6]  focus:outline-none inline-block' type="password" placeholder='password' hidden name="password" />
                     </form>
 
-                    <button type="submit" onClick={handleClick} className="  w-[40%] px-[15px] py-[20px] bg-[rgb(255,184,163)]/80 transition-all ease-in duration-300 hover:bg-[rgb(255,184,163)]">LOG IN</button>
+                    <button type="submit" onClick={handleClick} className={`${buttonDis ? 'cursor-not-allowed w-[40%] px-[15px] py-[20px] bg-[rgb(255,184,163)]/80 transition-all ease-in duration-300 hover:bg-[rgb(255,184,163)]' : 'w-[40%] px-[15px] py-[20px] bg-[rgb(255,184,163)]/80 transition-all ease-in duration-300 hover:bg-[rgb(255,184,163)]'} login`}>LOG IN</button>
+                    {error && <span className="text-red-500">Something went wrong...</span>}
                     <a className="hover:text-blue-600 text-black transition-all ease-in duration-300 " href="">DO NOT REMEMBER YOUR PASSWORD?</a>
                     <a href="" className="hover:text-blue-600 transition-all ease-in duration-300 text-black">CREATE A NEW ACCOUNT</a>
                 </div>

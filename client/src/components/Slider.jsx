@@ -4,6 +4,7 @@ import { slider1, slider2, slider3 } from '../assets/index'
 import { useState, useEffect } from 'react';
 import { sliderItems } from '../data';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 const SliderContainer = styled.section`
 transition: all 1.5s ease;
@@ -39,7 +40,9 @@ const Slider = () => {
                             <div className=' InfoContainer   p-12 flex flex-col'>
                                 <h1 className='text-[70px] font-bold'>{slide.title}</h1>
                                 <p className='font-5 my-12 max-w-lg  tracking-[.3rem]'>{slide.desc}</p>
-                                <button className='cursor-pointer p-3 text-xl bg-transparent border-2 w-[150px] border-black  '>SHOP NOW</button>
+                                <Link to="/products">
+                                    <button className='cursor-pointer p-3 text-xl bg-transparent border-2 w-[150px] border-black  '>SHOP NOW</button>
+                                </Link>
                             </div>
                         </div>
                     )
