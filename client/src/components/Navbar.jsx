@@ -4,13 +4,22 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import { logo } from '../assets/index';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../redux/userRedux'
+import { resetCart } from '../redux/cartRedux'
 
 
 
 const Navbar = () => {
-    const quantity = useSelector(state => state.cart.quantity)
+    const cart = useSelector((state) => state.cart)
+    const quantity = useSelector(state => state.cart.quantity);
+    const user = useSelector(state => state.user.currentUser);
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        dispatch(resetCart())
+        dispatch(logout())
+    }
+
     return (
         <>
             <div className=" h-15">
@@ -33,7 +42,7 @@ const Navbar = () => {
                         <MenuIcon />
                     </div>
                     <span className=' hidden sm:flex flex-row gap-x-4 sm:text-sm ml-[10px] mr-2 sm:justify-end justify-center items-center'>
-                        <Link to='/login' className='sm:text-sm text-[12px] w-[50px] text-center cursor-pointer '>SIGN IN</Link>
+                        {user ? <button onClick={handleClick} className='sm:text-sm text-[12px] w-[50px] text-center cursor-pointer '>LOGOUT</button> : <Link to='/login' className='sm:text-sm text-[12px] w-[50px] text-center cursor-pointer '>SIGN IN</Link>}
                         <Link to='/register' className='sm:text-sm text-[12px] w-[60px] text-center cursor-pointer'>REGISTER</Link>
 
                         <div className='text-sm cursor-pointer'>

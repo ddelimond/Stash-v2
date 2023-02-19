@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../redux/apiCalls'
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
 
@@ -10,13 +11,18 @@ const RegisterForm = () => {
     const [lastname, setLastname] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+    const formReset = () => { setFirstname(''); setLastname(''); setPassword(''); setUsername('') }
     const dispatch = useDispatch()
-    const handleClick = (e) => {
-        e.preventDefault();
-        register(dispatch, { firstname, lastname, username, password, confirmPassword })
+    const { isFetching, isSuccess, error } = useSelector((state) => state.user)
+    console.log(error)
+    const navigate = useNavigate();
+    const handleClick = async (e) => {
 
+        e.preventDefault();
+        register(dispatch, { firstname, lastname, username, password });
+        navigate('/login')
     }
+
 
     return (
         <>
@@ -29,7 +35,6 @@ const RegisterForm = () => {
                         <input onChange={(e) => setLastname(e.target.value)} className='w-[300px] h-[50px] border-2 border-solid border-gray-200  p-[10px] rounded-[5px]  focus:outline-none inline-block' type="text" placeholder='lastname' name="lastname" />
                         <input onChange={(e) => setUsername(e.target.value)} className='w-[300px] h-[50px] border-2 border-solid border-gray-200  p-[10px] rounded-[5px]   focus:outline-none inline-block' type="email" placeholder='username' name="username" />
                         <input onChange={(e) => setPassword(e.target.value)} className='w-[300px] h-[50px]  border-2 border-solid border-gray-200 p-[10px] rounded-[5px]   focus:outline-none inline-block' type="password" placeholder='password' hidden name="password" />
-                        <input onChange={(e) => setConfirmPassword(e.target.value)} className='w-[300px] h-[50px]  border-2 border-solid border-gray-200 p-[10px] rounded-[5px]   focus:outline-none inline-block' type="password" placeholder='confirm password' hidden />
                     </form>
                     <p className="acknowlegment ">
                         By creating an account, I consent to the processing of my personal

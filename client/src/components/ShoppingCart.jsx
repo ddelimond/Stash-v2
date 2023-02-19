@@ -27,7 +27,18 @@ const ShoppingCart = () => {
 
     const cart = useSelector(state => state.cart)
     const [stripeToken, setStripeToken] = useState(null)
-    const history = useNavigate()
+    const navigate = useNavigate()
+    const currentUser = useSelector(state => state.user.currentUser)
+
+    const handleAdd = (e) => {
+        const selectedProdId = e.currentTarget.parentElement.parentElement.previousElementSibling.dataset.id;
+        const selectedProd = cart.products.filter(product => product._id === selectedProdId);
+        let prodQuantity = selectedProd.quantity;
+
+
+    }
+    const handleRemove = (e) => { }
+    console.log(cart)
 
 
     const onToken = (token) => {
@@ -42,29 +53,21 @@ const ShoppingCart = () => {
                     tokenId: stripeToken.id,
                     amount: cart.total * 100
                 })
-
-
-                history('/success', { state: { stripeData: res.data, products: cart } })
+                navigate('/success', { state: { stripeData: res.data, products: cart } })
                 cart.quantity = 0;
                 cart.products = [];
                 cart.total = 0;
-                console.log(cart)
-
             } catch (error) {
                 console.log(error)
             }
         }
-        stripeToken && makeRequest()
+        currentUser ? stripeToken && makeRequest() : navigate('/login')
     }, [stripeToken, cart.total, history])
 
     const key = import.meta.env.VITE_STRIPE_KEY
 
 
 
-
-    // const dispatch = useDispatch()
-
-    // dispatch()
 
     return (
         <div className="container w-screen h-full max-w-[100vw]">
@@ -82,7 +85,7 @@ const ShoppingCart = () => {
                     <div className="info grow-[3] ">
                         {cart.products.map(product => (
                             <div className="product flex flex-col lg:flex-row justify-between my-[10px]  ">
-                                <div className="productDetails grow-[2] flex">
+                                <div className="productDetails grow-[2] flex" data-id={product._id}>
                                     <img className="w-[200px]" src={product.img} alt="product image" />
                                     <div className="details p-[20px] flex flex-col justify-around">
                                         <span className="prodname"><b>Product:</b>{product.title}</span>
@@ -93,9 +96,9 @@ const ShoppingCart = () => {
                                 </div>
                                 <div className="priceDetails grow-[1] flex items-center font-bold flex-col">
                                     <div className="prodAmountCont flex flex-row items-center mb-[20px]">
-                                        <Add onClick={console.log("hello")} className="cursor-pointer" />
+                                        <Remove onClick className="cursor-pointer" />
                                         <div className="prodAmount text-[24px] mx-[15px] my-[5px]">{product.quantity}</div>
-                                        <Remove className="cursor-pointer" />
+                                        <Add onClick className="cursor-pointer" />
                                     </div>
                                     <div className="prodPrice font-thin text-[30px]  ">$ {product.price}</div>
                                 </div>

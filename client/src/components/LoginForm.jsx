@@ -15,7 +15,7 @@ const LoginForm = () => {
 
     }
     const buttonDis = document?.getElementsByClassName('login')[0]?.disabled
-    console.log(buttonDis)
+
     return (
         <>
             <div className='container w-screen h-screen relative flex flex-col justify-center items-center opacity-60  max-w-[100vw]'>
