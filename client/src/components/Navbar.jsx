@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/userRedux'
 import { resetCart } from '../redux/cartRedux'
+import { publicRequest } from '../requestMethods';
 
 
 
@@ -19,6 +20,18 @@ const Navbar = () => {
         dispatch(resetCart())
         dispatch(logout())
     }
+    const search = async (e) => {
+        // const prod = await publicRequest.get('/products')
+        // const products = [...prod.data]
+        // const searchedProducts = [...products].filter(product => {
+        //     if (product.title.toLowerCase().includes(e.target.value.toLowerCase)) { return product }
+        //     else if (product.categories.some(prod => prod.toLowerCase().includes(e.target.value.toLowerCase()))) { return product }
+        //     else if (product.color.some(prod => prod.toLowerCase().includes(e.target.value.toLowerCase()))) { return product }
+        // }
+
+        // )
+        // console.log(searchedProducts)
+    }
 
     return (
         <>
@@ -27,7 +40,7 @@ const Navbar = () => {
                     <div className='flex flex-row items-center '>
                         <span className='hidden sm:inline text-sm cursor-pointer'>EN</span>
                         <div className='flex border-black/20  border-2 p-1 sm:ml-6 border-solid  '>
-                            <input type="text" className='focus:outline-none w-[50px] sm:w-[150px]' placeholder='Search' />
+                            <input onChange={search} type="text" className='focus:outline-none w-[50px] sm:w-[150px]' placeholder='Search' />
                             <SearchIcon className='text-[gray]/40' />
                         </div>
                     </div>
