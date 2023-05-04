@@ -1,5 +1,5 @@
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { slider1, slider2, slider3 } from '../assets/index'
 import { useState, useEffect } from 'react';
 import { sliderItems } from '../data';
