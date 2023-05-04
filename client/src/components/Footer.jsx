@@ -1,10 +1,10 @@
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import PinterestIcon from '@material-ui/icons/Pinterest';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import PinterestIcon from '@mui/icons-material/Pinterest';
 import { logo } from '../assets';
-import RoomIcon from '@material-ui/icons/Room';
-import PhoneIcon from '@material-ui/icons/Phone';
-import EmailIcon from '@material-ui/icons/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
 import { payments } from '../assets';
 
 const Footer = () => {
@@ -46,7 +46,7 @@ const Footer = () => {
             <div className='right grow flex justify-center flex-col p-5'>
                 <h1 className='titile font-bold mb-8 text-center'>Contact</h1>
                 <div className='contactItem mb-2 flex items-center sm:items-start'>
-                    <RoomIcon className='m-2' /> 999 N High St Columbus Ohio 43209
+                    <LocationOnIcon className='m-2' /> 999 N High St Columbus Ohio 43209
                 </div>
                 <div className='contactItem mb-2 flex items-center'>
                     <PhoneIcon className='m-2' /> 1+ 614 567 8779

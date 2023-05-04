@@ -1,7 +1,7 @@
-import ShoppingCartOutlined from "@material-ui/icons/ShoppingCartOutlined";
-import SearchIcon from '@material-ui/icons/Search';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import Card from '@material-ui/core/Card';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Card from '@mui/material/Card';
 import { Link } from "react-router-dom";
 
 

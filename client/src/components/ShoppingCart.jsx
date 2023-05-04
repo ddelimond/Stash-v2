@@ -1,4 +1,5 @@
-import { Add, Remove } from "@material-ui/icons"
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import { useEffect, useState } from "react"
 import { bag } from '../assets'
 import { useDispatch, useSelector } from "react-redux"
@@ -96,9 +97,9 @@ const ShoppingCart = () => {
                                 </div>
                                 <div className="priceDetails grow-[1] flex items-center font-bold flex-col">
                                     <div className="prodAmountCont flex flex-row items-center mb-[20px]">
-                                        <Remove onClick className="cursor-pointer" />
+                                        <RemoveIcon onClick className="cursor-pointer" />
                                         <div className="prodAmount text-[24px] mx-[15px] my-[5px]">{product.quantity}</div>
-                                        <Add onClick className="cursor-pointer" />
+                                        <AddIcon onClick className="cursor-pointer" />
                                     </div>
                                     <div className="prodPrice font-thin text-[30px]  ">$ {product.price}</div>
                                 </div>

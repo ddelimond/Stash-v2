@@ -1,7 +1,7 @@
-import SearchIcon from '@material-ui/icons/Search';
-import Badge from '@material-ui/core/Badge';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import Badge from '@mui/material/Badge';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import { logo } from '../assets/index';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,4 +1,5 @@
-import { Add, Remove } from "@material-ui/icons";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -194,9 +195,9 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove className="cursor-pointer" onClick={() => handleQuantity("dec")} />
+              <RemoveIcon className="cursor-pointer" onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
-              <Add className="cursor-pointer" onClick={() => handleQuantity("inc")} />
+              <AddIcon className="cursor-pointer" onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button className="rounded-[5px] transition-all border-teal-500 border-solid border-2 hover:bg-teal-500 hover:text-white ease-in duration-300" onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
