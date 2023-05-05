@@ -59,7 +59,7 @@ const Navbar = () => {
                         <Link to='/register' className='sm:text-sm text-[12px] w-[60px] text-center cursor-pointer'>REGISTER</Link>
 
                         <div className='text-sm cursor-pointer'>
-                            <Badge badgeContent={quantity} color="secondary" className='cursor-pointer'>
+                            <Badge badgeContent={quantity} color="error" className='cursor-pointer'>
                                 <Link to="/cart">
                                     <ShoppingCartOutlinedIcon />
                                 </Link>

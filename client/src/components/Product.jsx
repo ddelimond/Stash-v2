@@ -14,7 +14,7 @@ const Product = ({ item }) => {
                 <img src={item.img} alt="product image" className=" h-full object-cover  z-10" />
                 <div className="info flex absolute transition-opacity ease-in-out duration-500 z-20 opacity-0 rounded-xl hover:opacity-100 bg-[lightgray]/30 cursor-pointer  gap-5 top-0 left-0 flex-row justify-center text-[40px] w-full h-full items-center">
                     <div className="icon rounded-[50%] transition-all ease-in-out duration-500 hover:scale-110 hover:bg-[lightblue]/50 bg-white/50 w-[40px] flex justify-center items-center h-[40px]">
-                        <ShoppingCartOutlined className="" />
+                        <ShoppingCartOutlinedIcon />
                     </div>
                     <div className="icon rounded-[50%] transition-all ease-in-out duration-500 hover:scale-110 hover:bg-[lightyellow]/50 bg-white/50 w-[40px] flex justify-center items-center h-[40px]">
                         <Link to={`/single/product/${item._id}`}>
