@@ -3,17 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
   
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-13028b70.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACW1BMVEUAAACalbqYlLmZlbqXk7lNrP/9u6a0sMuLhrAAANGGgK2WkriRjLT9vKayrsqFf6yRjLVdcLRhWJOXkriSjbWbl7ySkLmWkbiVkLeIhLCdmbz9xbPK//+LhrFSSov6//+Uj7aHgq6dmb2Yk7mfmbz5nILhsKyZlLo9NH2gnL+bl7uXkriYk7mZlLmqp8Wbl7ucl7yZlbvdrar+uqP/0baem7+Yk7malrqemb2XkriXkriXkrialrqYk7mYk7n+vKf9uaP9u6WWkbiVkLeVkLeVkLealbqYk7mTjraSjbbJpKz/uqOZlbqUj7aVkbeYk7mUj7aVkLeYk7mTjrWXkrius9P+vaf7uaT8u6aVkLeVkLealbqblrualbqUj7aSjbWTjbWVkLeUj7aUj7aalbqZlLmUkLeYk7mcmLybl7uSjbWWkriYk7mUkLeXkriblruQkLuVkLiVkLeWkbealruVkLeSjbWZlLqUj7aZlLmVkLeWkbiRl8KVkrmVkLeUj7eWkbeSjbWUj7aWkbiVkLeUj7edmb3/uqL6vKeYlr2VkLeYk7mUj7eWkbeUkLeXk7mclbjuyMH+uqP/uqKdnMCWkbeVkLeRjLWXk7mppMSemb2VkLedmLz/uqLJp6+VkbiXk7mWkriUj7aTjragm76VkLeYk7mmosOjocP3uKX9uqT/uaLss6eWkriVkLeVkbeTjraXkrjCv9WYlLmWkbedmLyZlLqZlLmZlLmemb2YlLmalbqfm76Zlbqcl7v9u6X9vKecmLyYlLmalbqZlbqYk7mdmLyemr3///9ioA50AAAAyHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWn9EAzNtViM2AQI6FgI/flwPGTUIPApvzJS6KVq521dkKN55NtCWXla1Bw91FIW8MBwIHMUugdvGHEfWTxwRWMQoMIwaGInDkhYZLiLTf8txB2e7rTNV7sjO5S1CJybFaRl547uIAyk/EpSoV8UrQdIuUmKsRRa1KAuzVw4QczwvYZPTflCpBR28KBRWNwMkBwMlCCATBksMDyAFBq1QwAMAAAABYktHRMgdulfKAAAAB3RJTUUH5wUPETkQWcFKJQAAAPtJREFUOMtjYBgFgwcwamnr6OrpGxgaGZuYmpkzMVtYWlnbsNjasdo7OLIxMLBzODm7uLq5e3h6eXP6+PpxcfsHBLoG8QSHhIaFR/AyMPDxR0ZFx8QKxMUnCAolJiWnCKempWdkimRl5+Tm5YsCrRArKCwqLhEvjS+TKK+orKqWrKmtq28QaWxqbmltk2JgkJZp7+js6hbpiS+T7e3rb54wcdLkKVOnyU2fMXPW7DkgBfJz582vWKCwcNHiJUuXLV+xctXqNWvXrVfcsHHT5i1blUDeUN62fcdOpZ27du/Zu09Fdf8BtYOphw6rHzmqcWzXcc2BDuNRQAoAAM7CUogCwqu1AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA1LTE1VDE3OjU3OjE2KzAwOjAwKhw17AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNS0xNVQxNzo1NzoxNiswMDowMFtBjVAAAABXelRYdFJhdyBwcm9maWxlIHR5cGUgaXB0YwAAeJzj8gwIcVYoKMpPy8xJ5VIAAyMLLmMLEyMTS5MUAxMgRIA0w2QDI7NUIMvY1MjEzMQcxAfLgEigSi4A6hcRdPJCNZUAAAAASUVORK5CYII=">
+  <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA8FBMVEUAAACbl7vwt6qioMOalbqcl7uvsNH3xaH/xZvvsqSQh66Be6r//wCJhK+bl7ucl7yjn8CqpsT5u6ialrqblrv/x5ualbqWkbeWkbiYlLmWkbfXqqqvm7OVkLebl7uVkbeWkbiXkriVkbjHp7Hytaail7eYkreWkbiYk7mTjrWhk7OVkLeWkbiZkreVkbeUkLeYkreclLf/xp3arauXkbeWkriTjraUj7aVkbeclbjJpq/ss6eak7eVkLeWkbeZlLqXkri3n7OYk7iXkriWkriXkriXkrn+vqX/vKPKpq+Zk7iXkriXkriZlLqYlLn///+z+TeoAAAAT3RSTlMAAAAAAAAAAAAAAAAAAAIFAgQBAQYBA19pM3k9HlsETnQeQxsoBW1vF2krvS5bIoOEZAU+ji5TMXxsSDOFSWlRZA8pBQ0KEQIQCikLDwgPxU77fwAAAAFiS0dET25mQUkAAAAHdElNRQfnBQ8RORBZwUolAAAAZElEQVQY02NgoAVg5OMXEBRiYmYRFmFlYxflYBATl5CUkpaRlZNXUFRSVuFkUFVT19DUEtfW0ZXS0zcw5GIwMjYxNTO3sLSytrG1s3fgZuBxdHJ2cXVz9/D08vbx9eOliUMxAABaOgw7gKRuVwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNS0xNVQxNzo1NzoxNiswMDowMCocNewAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDUtMTVUMTc6NTc6MTYrMDA6MDBbQY1QAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC">
+  <link rel="manifest" href="data:application/manifest+json;base64,ewogICAgIm5hbWUiOiAiU3Rhc2giLAogICAgInNob3J0X25hbWUiOiAiU3Rhc2giLAogICAgImljb25zIjogWwogICAgICAgIHsKICAgICAgICAgICAgInNyYyI6ICIvcHVibGljL2FuZHJvaWQtY2hyb21lLTE5MngxOTIucG5nIiwKICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAgICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAgICJzcmMiOiAiL3B1YmxpYy9hbmRyb2lkLWNocm9tZS0zODR4Mzg0LnBuZyIsCiAgICAgICAgICAgICJzaXplcyI6ICIzODR4Mzg0IiwKICAgICAgICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogICAgICAgIH0KICAgIF0sCiAgICAidGhlbWVfY29sb3IiOiAiI2ZmZmZmZiIsCiAgICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZmZmZmIiwKICAgICJkaXNwbGF5IjogInN0YW5kYWxvbmUiCn0K">
+  <link rel="mask-icon" href="/assets/safari-pinned-tab-89f0af69.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/favicon-d0073e48.ico">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="/public/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + React</title>
-  <script type="module" crossorigin src="/assets/index-61cc8600.js"></script>
-  <link rel="stylesheet" href="/assets/index-f313b99a.css">
+  <title>Stash</title>
+  <script type="module" crossorigin src="/assets/index-2de1710e.js"></script>
+  <link rel="stylesheet" href="/assets/index-84ded8b6.css">
 </head>
 
 <bodys>

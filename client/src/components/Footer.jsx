@@ -52,7 +52,8 @@ const Footer = () => {
                     <PhoneIcon className='m-2' /> 1+ 614 567 8779
                 </div>
                 <div className='contactItem mb-2 flex items-center'>
-                    <EmailIcon className='m-2' /> stashcustomerservice@support.com
+                    <EmailIcon className='m-2' /> 
+                    <p className='text-sm md:text-lg'>stash@support.com</p> 
                 </div>
                 <div className='payments px-2'>
                     <img src={payments} className='w-[80%]' alt="payment methods" />

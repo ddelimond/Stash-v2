@@ -55,13 +55,16 @@ const Price = styled.span`
 const FilterContainer = styled.div`
   width: 50%;
   margin: 30px 0px;
+  row-gap: 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   ${mobile({ width: "100%" })}
 `;
 
 const Filter = styled.div`
   display: flex;
+  
   align-items: center;
 `;
 
@@ -90,6 +93,8 @@ const AddContainer = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
   justify-content: space-between;
   ${mobile({ width: "100%" })}
 `;

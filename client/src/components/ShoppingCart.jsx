@@ -86,9 +86,9 @@ const ShoppingCart = () => {
                     <div className="info grow-[3] ">
                         {cart.products.map(product => (
                             <div className="product flex flex-col lg:flex-row justify-between my-[10px]  ">
-                                <div className="productDetails grow-[2] flex" data-id={product._id}>
+                                <div className="productDetails grow-[2] flex flex-wrap" data-id={product._id}>
                                     <img className="w-[200px]" src={product.img} alt="product image" />
-                                    <div className="details p-[20px] flex flex-col justify-around">
+                                    <div className="details p-[20px] max-w-[300px] flex flex-col justify-around">
                                         <span className="prodname"><b>Product:</b>{product.title}</span>
                                         <span><b>ID:</b>{product._id}</span>
                                         <Color color={product.color}></Color>
