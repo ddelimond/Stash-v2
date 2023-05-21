@@ -53,7 +53,7 @@ const ProductList = ({ CAT }) => {
                     <span className='filterText text-[20px] font-normal ml-5 sm:ml-10 m-auto'>
                         Filter Products:
                     </span>
-                    <select name="Color" onChange={handleFilters} id="Filter" className=' ml-5 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
+                    <select name="Color" onChange id="Filter" className=' ml-5 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Colors" disabled >Colors</option>
                         <option value="white">white</option>
                         <option value="=black">black</option>
@@ -67,7 +67,7 @@ const ProductList = ({ CAT }) => {
                         <option value="gray">gray</option>
                     </select>
 
-                    <select name="Size" onChange={handleFilters} className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
+                    <select name="Size" onChange className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Size" disabled >Size</option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
@@ -96,7 +96,8 @@ const ProductList = ({ CAT }) => {
                     <span className='filterText text-[20px] font-normal ml-0 sm:ml-10'>
                         Sort Products:
                     </span>
-                    <select name="Sort" onChange={(e) => { setSort({ [e.target.name]: e.target.value }); console.log(sort) }} className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
+                    {/* (e) => {setSort({ [e.target.name]: e.target.value }); console.log(sort) } */}
+                    <select name="Sort" onChange className=' ml-5 mr-10 p-2 w-[100px] focus:outline-none h-[40px] text-center border-2 border-solid border-black'>
                         <option value="Newest">Newest</option>
                         <option value="(asc)">Price (asc)</option>
                         <option value="(desc)">Price (desc)</option>
