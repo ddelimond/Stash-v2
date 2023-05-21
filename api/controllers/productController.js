@@ -5,7 +5,6 @@ module.exports = {
     create: async (req, res) => {
         try {
             const newProd = await products.create(req.body)
-            console.log(newProd)
             res.status(200).json(newProd)
         } catch (err) {
             res.status(500).json(err)

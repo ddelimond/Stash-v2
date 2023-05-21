@@ -22,6 +22,7 @@ mongoose.connect(process.env.connectionString)
     })
 
 // crud routes
+app.get('/', (req, res) => res.status(200).send({msg:'Welcome to stash'}))
 app.use('/auth', require('./routes/auth.js'))
 app.use('/user', require('./routes/user.js'))
 app.use('/products', require('./routes/product.js'))
