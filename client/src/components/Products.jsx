@@ -20,7 +20,7 @@ const Products = ({ cat, filters, sort }) => {
 
         const getProducts = async () => {
             try {
-                const res = await axios.get(CAT ? `https://stash-v2-server.onrender.com/products?category=${CAT}` : 'https://stash-v2-server.onrender.com/products')
+                const res = await axios.get(CAT ? `https://stashv2svr.onrender.com/products?category=${CAT}` : 'https://stash-v2-server.onrender.com/products')
 
                 setProducts(res.data)
 
