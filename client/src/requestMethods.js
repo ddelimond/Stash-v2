@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://stash-v2-server.onrender.com/";
+const BASE_URL = "https://stashv2svr.onrender.com/";
 // const TOKEN =
 //   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
 //     .accessToken || "";
