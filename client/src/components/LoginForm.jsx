@@ -2,6 +2,7 @@ import { useState } from "react"
 import { login } from '../redux/apiCalls'
 import { mobile } from '../responsive'
 import { useDispatch, useSelector } from 'react-redux'
+import {Link} from "react-router-dom";
 
 const LoginForm = () => {
     const [username, setUsername] = useState('')
@@ -30,7 +31,7 @@ const LoginForm = () => {
                     <button type="submit" onClick={handleClick} className={`${buttonDis ? 'cursor-not-allowed w-[40%] px-[15px] py-[20px] bg-[rgb(255,184,163)]/80 transition-all ease-in duration-300 hover:bg-[rgb(255,184,163)]' : 'w-[40%] px-[15px] py-[20px] bg-[rgb(255,184,163)]/80 transition-all ease-in duration-300 hover:bg-[rgb(255,184,163)]'} login`}>LOG IN</button>
                     {error && <span className="text-red-500">Something went wrong...</span>}
                     <a className="hover:text-blue-600 text-black transition-all ease-in duration-300 " href="">DO NOT REMEMBER YOUR PASSWORD?</a>
-                    <a href="/register" className="hover:text-blue-600 transition-all ease-in duration-300 text-black">CREATE A NEW ACCOUNT</a>
+                    <Link to='/register' className="hover:text-blue-600 transition-all ease-in duration-300 text-black">CREATE A NEW ACCOUNT</Link>
                 </div>
             </div>
 
